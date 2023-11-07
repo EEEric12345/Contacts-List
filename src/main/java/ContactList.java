@@ -5,22 +5,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ContactList {
-    private List<Contact> contacts;
+    private static List<Contact> contacts;
 
     // Constructor
     public ContactList() {
         contacts = new ArrayList<>();
     }
 
+    // add another contact
     public void addContact(Contact contact) {
         contacts.add(contact);
     }
 
+    // list all the contact's first name, last name, nickname
     public void listContacts() {
-        // Finish this method
+        System.out.printf("%-25s%-25s%-25s\n", "First Name", "Last Name", "Nickname");
+        System.out.println("--------------------------------------------------------");
+        for (Contact contact : contacts) {
+            System.out.printf("%-25s%-25s%-25s\n", contact.getFirstName(), contact.getLastName(), contact.getNickname());
+        }
     }
 
+    // Save all the contacts to a file
     public void saveContactsToFile(String filename) {
+        filename += ".bin";
         try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename))) {
             output.writeObject(contacts);
             System.out.println("Contacts saved to " + filename);
@@ -29,7 +37,9 @@ class ContactList {
         }
     }
 
+    // Load all contacts from a file
     public void loadContactsFromFile(String filename) {
+        filename += ".bin";
         try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(filename))) {
             List<Contact> loadedContacts = (List<Contact>) input.readObject();
             contacts = loadedContacts;
