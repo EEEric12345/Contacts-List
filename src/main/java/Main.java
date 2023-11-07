@@ -11,7 +11,7 @@ class Main{
             System.out.println("2. List Contacts");
             System.out.println("3. Find a Contact by Name");
             System.out.println("4. Save Contacts to File");
-            System.out.println("5. Load Contacts from File");
+            System.out.println("5. Load Contacts from File(Warning: Save before loading from a new file!!)");
             System.out.println("6. Exit");
             System.out.print("Select an option: ");
         }
