@@ -17,8 +17,26 @@ class ContactList {
     }
 
     public void listContacts() {
-        // Finish this method
+        if (contacts.isEmpty()) {
+            System.out.println("No contacts in the list.");
+        } else {
+            for (Contact contact : contacts) {
+                System.out.println("Name: " + contact.getFirstName() + " " +
+                        (contact.getMiddleName() != null ? contact.getMiddleName() + " " : "") +
+                        contact.getLastName());
+                System.out.println("Nickname: " + contact.getNickname());
+                System.out.println("Phones: " + String.join(", ", contact.getPhoneNumbers()));
+                System.out.println("Emails: " + String.join(", ", contact.getEmails()));
+                System.out.println("Groups: " + String.join(", ", contact.getGroups()));
+                System.out.println("Addresses: " + String.join(", ", contact.getAddresses()));
+                System.out.println("Important Dates: " + String.join(", ", contact.getimportantDates()));
+                System.out.println("Relationship: " + contact.getRelationship());
+                System.out.println("Notes: " + contact.getNotes());
+                System.out.println("----------------------------------");
+            }
+        }
     }
+    
 
     public void saveContactsToFile(String filename) {
         try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filename))) {
