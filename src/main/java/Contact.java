@@ -1,8 +1,9 @@
 package main.java;
 
 import java.util.List;
+import java.io.*;
 
-class Contact {
+class Contact implements Serializable {
     private String namePrefix;
     private String firstName;
     private String middleName;
