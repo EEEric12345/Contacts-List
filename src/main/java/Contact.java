@@ -4,6 +4,7 @@ import java.util.List;
 import java.io.*;
 
 class Contact implements Serializable {
+    // variables storing basic information of the contact
     private String namePrefix;
     private String firstName;
     private String middleName;
@@ -140,5 +141,10 @@ class Contact implements Serializable {
     // update notes
     public void updateNotes(String notes) {
         this.notes = notes;
+    }
+    // displays all the info of the contact
+    public void displayInfo() {
+        System.out.printf("%-10s%-25s%-20s%-25s%-10s%-25s\n", "Prefix", "First Name", "Middle Name", "Last Name", "Suffix", "Nickname");
+        System.out.printf("%-10s%-25s%-20s%-25s%-10s%-25s\nPhone Numbers: %s\nEmails: %s\nGroups: %s\nAdresses: %s\nImportant Dates: %s\nRelationship: %-20s Notes: %s\n", namePrefix, firstName, middleName, lastName, nameSuffix, nickname, phoneNumbers, emails, groups, addresses, importantDates, relationship, notes);
     }
 }
