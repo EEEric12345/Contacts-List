@@ -112,6 +112,7 @@ class Main {
         System.out.println("Enter notes (press Enter to skip):");
         String notes = scanner.nextLine();
         
+        // creates a new contact with the information user provided
         Contact newContact = new Contact(namePrefix, firstName, middleName, lastName, 
                                         nameSuffix, nickname, phoneNumbers, emails, groups, 
                                         addresses, importantDates, relationship, notes);
