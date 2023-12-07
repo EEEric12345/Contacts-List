@@ -29,6 +29,7 @@ public class ContactList implements Serializable {
 
     // Search for a specific string in a contact's information
     public void searchContact(String toSearch) {
+        boolean found = false;
         for (Contact contact : contacts) {
             String namePrefix = contact.getNamePrefix();
             String firstName = contact.getFirstName();
@@ -45,40 +46,49 @@ public class ContactList implements Serializable {
             String notes = contact.getNotes();
             // Check everything not in an array
             if (namePrefix.contains(toSearch) || firstName.contains(toSearch) || middleName.contains(toSearch) || lastName.contains(toSearch) || namePrefix.contains(toSearch) || nameSuffix.contains(toSearch) || nickname.contains(toSearch) || relationship.contains(toSearch) || notes.contains(toSearch)) {
+                found = true;
                 contact.displayInfo(); // display contact's info after found
             } else {
                 // Checks everything in an array
                 for (String phoneNumber : phoneNumbers) {
                     if (phoneNumber.contains(toSearch)) {
+                        found = true;
                         contact.displayInfo();
                         break;
                     }
                 }
                 for (String email : emails) {
                     if (email.contains(toSearch)) {
+                        found = true;
                         contact.displayInfo();
                         break;
                     }
                 }
                 for (String group : groups) {
                     if (group.contains(toSearch)) {
+                        found = true;
                         contact.displayInfo();
                         break;
                     }
                 }
                 for (String address : addresses) {
                     if (address.contains(toSearch)) {
+                        found = true;
                         contact.displayInfo();
                         break;
                     }
                 }
                 for (String importantDate : importantDates) {
                     if (importantDate.contains(toSearch)) {
+                        found = true;
                         contact.displayInfo();
                         break;
                     }
                 }
             }
+        }
+        if (!found) {
+            System.out.println("Contact NOT Found!!!");
         }
     }
 
@@ -203,6 +213,7 @@ public class ContactList implements Serializable {
                             }
                         // quit updating
                         case "15":
+                            scanner.close(); // Close the scanner to avoid resource leak
                             return;
                         default: 
                             System.out.println("Invalid option, please try again.");
@@ -212,6 +223,7 @@ public class ContactList implements Serializable {
         }
         // First Name / Last Name Mismatch
         System.out.println("Contact not found!");
+        scanner.close(); // Close the scanner to avoid resource leak
     }
 
     // Save all the contacts to a file
