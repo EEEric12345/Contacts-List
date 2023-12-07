@@ -8,6 +8,7 @@ class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final ContactList contactList = new ContactList();
 
+    // main method
     public static void main(String[] args) {
         boolean exit = true;
         while (exit) {
