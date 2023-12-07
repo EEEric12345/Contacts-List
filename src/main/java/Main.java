@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+// Main class, welcome screen, adds contracts
 class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final ContactList contactList = new ContactList();
