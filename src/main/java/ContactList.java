@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+// Class for modifying the contacts list, including downloading and uploading the contact list
 public class ContactList implements Serializable {
     private static List<Contact> contacts;
     // Constructor
@@ -45,49 +46,50 @@ public class ContactList implements Serializable {
             String relationship = contact.getRelationship();
             String notes = contact.getNotes();
             // Check everything not in an array
-            if (namePrefix.contains(toSearch) || firstName.contains(toSearch) || middleName.contains(toSearch) || lastName.contains(toSearch) || namePrefix.contains(toSearch) || nameSuffix.contains(toSearch) || nickname.contains(toSearch) || relationship.contains(toSearch) || notes.contains(toSearch)) {
+            if (namePrefix.contains(toSearch) || firstName.contains(toSearch) || 
+                middleName.contains(toSearch) || lastName.contains(toSearch) || 
+                namePrefix.contains(toSearch) || nameSuffix.contains(toSearch) || 
+                nickname.contains(toSearch) || relationship.contains(toSearch) || 
+                notes.contains(toSearch)) {
                 found = true;
-                contact.displayInfo(); // display contact's info after found
             } else {
                 // Checks everything in an array
                 for (String phoneNumber : phoneNumbers) {
                     if (phoneNumber.contains(toSearch)) {
                         found = true;
-                        contact.displayInfo();
                         break;
                     }
                 }
                 for (String email : emails) {
                     if (email.contains(toSearch)) {
                         found = true;
-                        contact.displayInfo();
                         break;
                     }
                 }
                 for (String group : groups) {
                     if (group.contains(toSearch)) {
                         found = true;
-                        contact.displayInfo();
                         break;
                     }
                 }
                 for (String address : addresses) {
                     if (address.contains(toSearch)) {
                         found = true;
-                        contact.displayInfo();
                         break;
                     }
                 }
                 for (String importantDate : importantDates) {
                     if (importantDate.contains(toSearch)) {
                         found = true;
-                        contact.displayInfo();
                         break;
                     }
                 }
             }
+            if (found) {
+                contact.displayInfo();
+            }
         }
-        if (!found) {
+        if (!found) { // display contact's info after found
             System.out.println("Contact NOT Found!!!");
         }
     }
@@ -97,7 +99,8 @@ public class ContactList implements Serializable {
         Scanner scanner = new Scanner(System.in);
         
         for (Contact contact : contacts) {
-            if (contact.getFirstName().equalsIgnoreCase(firstName) && contact.getLastName().equalsIgnoreCase(lastName)) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName) && 
+                contact.getLastName().equalsIgnoreCase(lastName)) {
                 System.out.println("Contact Found!");
                 contact.displayInfo();
 
@@ -160,37 +163,37 @@ public class ContactList implements Serializable {
                             break;
                         // update phone numbers
                         case "7":
-                            System.out.print("Enter new phone numbers (comma-separated(no space in between), press Enter to skip):");
+                            System.out.println("Enter new phone numbers (comma-separated(no space in between), press Enter to skip):");
                             contact.updatePhoneNumbers(Arrays.asList(scanner.next().split("\\s*,\\s*")));
                             System.out.println("Successfully changed phone numbers!");
                             break;
                         // update emails
                         case "8":
-                            System.out.print("Enter new emails (comma-separated(no space in between), press Enter to skip):");
+                            System.out.println("Enter new emails (comma-separated(no space in between), press Enter to skip):");
                             contact.updateEmails(Arrays.asList(scanner.next().split("\\s*,\\s*")));
                             System.out.println("Successfully changed emails!");
                             break;
                         // update groups
                         case "9":
-                            System.out.print("Enter new groups (comma-separated(no space in between), press Enter to skip):");
+                            System.out.println("Enter new groups (comma-separated(no space in between), press Enter to skip):");
                             contact.updateGroups(Arrays.asList(scanner.next().split("\\s*,\\s*")));
                             System.out.println("Successfully changed groups!");
                             break;
                         case "10":
                         // update adresses
-                            System.out.print("Enter new addresses (comma-separated(no space in between), press Enter to skip):");
+                            System.out.println("Enter new addresses (comma-separated(no space in between), press Enter to skip):");
                             contact.updateAddresses(Arrays.asList(scanner.next().split("\\s*,\\s*")));
                             System.out.println("Successfully changed address!");
                             break;
                         // update important dates
                         case "11":
-                            System.out.print("Enter new important dates (comma-separated(no space in between), press Enter to skip):");
+                            System.out.println("Enter new important dates (comma-separated(no space in between), press Enter to skip):");
                             contact.updateimportantDates(Arrays.asList(scanner.next().split("\\s*,\\s*")));
                             System.out.println("Successfully changed important dates!");
                             break;
                         // update relationship
                         case "12":
-                            System.out.print("Enter new relationship (press Enter to skip):");
+                            System.out.println("Enter new relationship (press Enter to skip):");
                             contact.updateRelationship(scanner.next());
                             System.out.println("Successfully changed relationship!");
                             break;
@@ -202,7 +205,8 @@ public class ContactList implements Serializable {
                             break;
                         // remove contact
                         case "14":
-                            System.out.println("You are about to remove " + firstName + " " + lastName + " from your contacts, type yes to continue, press Enter to cancel:");
+                            System.out.println("You are about to remove " + firstName + " " + lastName + 
+                            " from your contacts, type yes to continue, press Enter to cancel:");
                             String choice = scanner.next();
                             if ("yes".equalsIgnoreCase(choice)) {
                                 contacts.remove(contact);
@@ -213,7 +217,6 @@ public class ContactList implements Serializable {
                             }
                         // quit updating
                         case "15":
-                            scanner.close(); // Close the scanner to avoid resource leak
                             return;
                         default: 
                             System.out.println("Invalid option, please try again.");
@@ -223,7 +226,6 @@ public class ContactList implements Serializable {
         }
         // First Name / Last Name Mismatch
         System.out.println("Contact not found!");
-        scanner.close(); // Close the scanner to avoid resource leak
     }
 
     // Save all the contacts to a file

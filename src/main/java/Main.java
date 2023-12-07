@@ -110,7 +110,9 @@ class Main {
         System.out.println("Enter notes (press Enter to skip):");
         String notes = scanner.nextLine();
         
-        Contact newContact = new Contact(namePrefix, firstName, middleName, lastName, nameSuffix, nickname, phoneNumbers, emails, groups, addresses, importantDates, relationship, notes);
+        Contact newContact = new Contact(namePrefix, firstName, middleName, lastName, 
+                                        nameSuffix, nickname, phoneNumbers, emails, groups, 
+                                        addresses, importantDates, relationship, notes);
         contactList.addContact(newContact);
         System.out.println("Contact added successfully!");
     }
